@@ -12,39 +12,115 @@
     }
 
     body {
-      background: #ffffff;
-      color: #111111;
+      background: #f5f0e8;
+      color: #2c1a0e;
       font-family: "Georgia", serif;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
+      padding: 3rem 2rem;
     }
 
     .container {
-      text-align: left;
-      max-width: 480px;
-      padding: 2rem;
+      max-width: 560px;
+      width: 100%;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .profile-photo {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      flex-shrink: 0;
+      box-shadow: 0 2px 12px rgba(44, 26, 14, 0.12);
+    }
+
+    .profile-text {
+      flex: 1;
     }
 
     h1 {
-      font-size: 2rem;
+      font-size: 3rem;
       font-weight: normal;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.5rem;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
     }
 
-    p {
-      font-size: 1rem;
-      color: #555555;
+    .tagline {
+      font-size: 0.9rem;
+      color: #9c7a5a;
+      letter-spacing: 0.01em;
+    }
+
+    .bio {
+      font-size: 1.05rem;
+      color: #3d2410;
+      line-height: 1.75;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #d9ccba;
+      margin: 2.5rem 0;
+    }
+
+    .building {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .building-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #b08a6a;
+    }
+
+    .building-title {
+      font-size: 1.3rem;
+      font-weight: normal;
+      letter-spacing: -0.02em;
+      color: #2c1a0e;
+    }
+
+    .building-desc {
+      font-size: 0.95rem;
+      color: #6b4226;
       line-height: 1.6;
+      margin-top: 0.2rem;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Rajan Singh</h1>
-    <p>Building undistractable.</p>
+    <div class="profile">
+      <img class="profile-photo" src="photo.jpg" alt="Rajan Singh">
+      <div class="profile-text">
+        <h1>Rajan Singh</h1>
+        <p class="tagline">Founder, HabitStrong &nbsp;|&nbsp; Ex-McKinsey, IPS, Wharton</p>
+      </div>
+    </div>
+
+    <p class="bio">IIT Kanpur engineer turned IPS officer, McKinsey consultant, Wharton MBA, and PE investor — Rajan eventually left it all to build HabitStrong, an EdTech startup helping people cultivate discipline, focus, and a high-performance mindset through structured bootcamps. He's one of India's most unusual founders, and he's just getting started.</p>
+
+    <hr class="divider">
+
+    <div class="building">
+      <span class="building-label">Currently building</span>
+      <span class="building-title">Undistractable</span>
+      <p class="building-desc">An app for digital de-addiction — helping people reclaim their attention and live with intention.</p>
+    </div>
   </div>
 </body>
 </html>
