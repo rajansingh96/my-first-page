@@ -100,6 +100,64 @@
       line-height: 1.6;
       margin-top: 0.2rem;
     }
+
+    /* Timer */
+    .timer-section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .timer-display {
+      font-family: "Palatino Linotype", "Palatino", "Book Antiqua", serif;
+      font-size: 4.5rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      color: #2c1a0e;
+      line-height: 1;
+      margin: 0.6rem 0 1.2rem;
+    }
+
+    .timer-message {
+      font-size: 0.9rem;
+      color: #9c7a5a;
+      letter-spacing: 0.05em;
+      min-height: 1.4rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .timer-buttons {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .timer-btn {
+      font-family: "Georgia", serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      padding: 0.55rem 1.4rem;
+      border: 1px solid #c4aa8a;
+      background: transparent;
+      color: #2c1a0e;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .timer-btn:hover {
+      background: #2c1a0e;
+      color: #f5f0e8;
+    }
+
+    .timer-btn.primary {
+      background: #2c1a0e;
+      color: #f5f0e8;
+      border-color: #2c1a0e;
+    }
+
+    .timer-btn.primary:hover {
+      background: #4a2e18;
+      border-color: #4a2e18;
+    }
   </style>
 </head>
 <body>
@@ -121,6 +179,65 @@
       <span class="building-title">Undistractable</span>
       <p class="building-desc">An app for digital de-addiction — helping people reclaim their attention and live with intention.</p>
     </div>
+
+    <hr class="divider">
+
+    <div class="timer-section">
+      <span class="building-label">Focus timer</span>
+      <div class="timer-display" id="timer">25:00</div>
+      <p class="timer-message" id="timerMessage"></p>
+      <div class="timer-buttons">
+        <button class="timer-btn primary" id="startBtn" onclick="toggleTimer()">Start</button>
+        <button class="timer-btn" onclick="resetTimer()">Reset</button>
+      </div>
+    </div>
   </div>
+
+  <script>
+    const DURATION = 25 * 60;
+    let remaining = DURATION;
+    let interval = null;
+
+    function pad(n) {
+      return String(n).padStart(2, '0');
+    }
+
+    function updateDisplay() {
+      const m = Math.floor(remaining / 60);
+      const s = remaining % 60;
+      document.getElementById('timer').textContent = pad(m) + ':' + pad(s);
+    }
+
+    function toggleTimer() {
+      const btn = document.getElementById('startBtn');
+      if (interval) {
+        clearInterval(interval);
+        interval = null;
+        btn.textContent = 'Resume';
+      } else {
+        btn.textContent = 'Pause';
+        interval = setInterval(function () {
+          if (remaining <= 0) {
+            clearInterval(interval);
+            interval = null;
+            btn.textContent = 'Start';
+            document.getElementById('timerMessage').textContent = 'Focus Time Up';
+            return;
+          }
+          remaining--;
+          updateDisplay();
+        }, 1000);
+      }
+    }
+
+    function resetTimer() {
+      clearInterval(interval);
+      interval = null;
+      remaining = DURATION;
+      updateDisplay();
+      document.getElementById('startBtn').textContent = 'Start';
+      document.getElementById('timerMessage').textContent = '';
+    }
+  </script>
 </body>
 </html>
